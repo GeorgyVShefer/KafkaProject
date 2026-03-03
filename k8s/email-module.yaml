@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-module
+spec:
+  selector:
+    app: email-module
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-module
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: email-module
+  template:
+    metadata:
+      labels:
+        app: email-module
+    spec:
+      containers:
+        - name: email-module-container
+          image: georgyvs/email-module:latest
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: auth-module
+spec:
+  selector:
+    app: auth-module
+  ports:
+    - port: 80
+      target: Port
+      targetPort: 8080
+  type: LoadBalancer

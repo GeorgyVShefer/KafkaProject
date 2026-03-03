@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-module
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auth-module
+  template:
+    metadata:
+      labels:
+        app: auth-module
+    spec:
+      containers:
+        - name: auth-module-container
+          image: georgyvs/auth-module:latest
+          ports:
+            - containerPort: 8080
